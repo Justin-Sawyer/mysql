@@ -1,0 +1,33 @@
+mysql> select * from MediaType;
++-------------+-----------------------------+
+| MediaTypeId | Name                        |
++-------------+-----------------------------+
+|           1 | MPEG audio file             |
+|           2 | Protected AAC audio file    |
+|           3 | Protected MPEG-4 video file |
+|           4 | Purchased AAC audio file    |
+|           5 | AAC audio file              |
++-------------+-----------------------------+
+5 rows in set (0.00 sec)
+
+mysql> mysql> select count(MediaType.Name) from MediaType
+    -> inner join Track on Track.MediaTypeId = MediaType.MediaTypeId
+    -> where MediaType.Name = 'MPEG audio file';
++-----------------------+
+| count(MediaType.Name) |
++-----------------------+
+|                  3034 |
++-----------------------+
+1 row in set (0.01 sec)
+
+mysql> select count(MediaType.Name) as MPEG_file from MediaType
+    -> inner join Track on Track.MediaTypeId = MediaType.MediaTypeId
+    -> where MediaType.Name = 'MPEG audio file';
++-----------+
+| MPEG_file |
++-----------+
+|      3034 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> notee

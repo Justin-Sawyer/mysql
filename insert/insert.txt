@@ -1,0 +1,42 @@
+mysql> insert into MediaType (Name)
+    -> values ('m4a Apple Music File')
+    -> ;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from MediaType;
++-------------+-----------------------------+
+| MediaTypeId | Name                        |
++-------------+-----------------------------+
+|           1 | MPEG audio file             |
+|           2 | Protected AAC audio file    |
+|           3 | Protected MPEG-4 video file |
+|           4 | Purchased AAC audio file    |
+|           5 | AAC audio file              |
+|           6 | m4a Apple Music File        |
++-------------+-----------------------------+
+6 rows in set (0.01 sec)
+
+mysql> insert into Album (Title, ArtistId)
+    -> values ('Boy', 150);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from Album
+    -> where ArtistId = 150;
++---------+------------------------------------------------------------------+----------+
+| AlbumId | Title                                                            | ArtistId |
++---------+------------------------------------------------------------------+----------+
+|     232 | Achtung Baby                                                     |      150 |
+|     233 | All That You Can't Leave Behind                                  |      150 |
+|     234 | B-Sides 1980-1990                                                |      150 |
+|     235 | How To Dismantle An Atomic Bomb                                  |      150 |
+|     236 | Pop                                                              |      150 |
+|     237 | Rattle And Hum                                                   |      150 |
+|     238 | The Best Of 1980-1990                                            |      150 |
+|     239 | War                                                              |      150 |
+|     240 | Zooropa                                                          |      150 |
+|     255 | Instant Karma: The Amnesty International Campaign to Save Darfur |      150 |
+|     348 | Boy                                                              |      150 |
++---------+------------------------------------------------------------------+----------+
+11 rows in set (0.00 sec)
+
+mysql> notee

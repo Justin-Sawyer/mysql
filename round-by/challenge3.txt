@@ -1,0 +1,69 @@
+mysql> select Artist.Name as Artist, count(Track.TrackId) as Tracks from Artist
+    -> inner join Album on Album.ArtistId = Artist.ArtistId
+    -> inner join Track on Track.AlbumId = Album.AlbumId
+    -> group by Artist.Name
+    -> order by count(Track.TrackId)
+    -> limit 5;
++------------------------------+--------+
+| Artist                       | Tracks |
++------------------------------+--------+
+| Aaron Goldberg               |      1 |
+| Luciana Souza/Romero Lubambo |      1 |
+| Cake                         |      1 |
+| Aquaman                      |      1 |
+| Dread Zeppelin               |      1 |
++------------------------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select Artist.Name as Artist, count(Track.TrackId) as Tracks from Artist
+    -> inner join Album on Album.ArtistId = Artist.ArtistId
+    -> inner join Track on Track.AlbumId = Album.AlbumId
+    -> group by Artist.Name
+    -> order by count(Artist.Name)
+    -> limit 5;
++------------------------------+--------+
+| Artist                       | Tracks |
++------------------------------+--------+
+| Aaron Goldberg               |      1 |
+| Luciana Souza/Romero Lubambo |      1 |
+| Cake                         |      1 |
+| Aquaman                      |      1 |
+| Dread Zeppelin               |      1 |
++------------------------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select Artist.Name as Artist, count(Track.TrackId) as Tracks from Artist
+    -> inner join Album on Album.ArtistId = Artist.ArtistId
+    -> inner join Track on Track.AlbumId = Album.AlbumId
+    -> group by Artist.Name
+    -> order by count(Artist.Name)
+    -> desc limit 5;
++--------------+--------+
+| Artist       | Tracks |
++--------------+--------+
+| Iron Maiden  |    213 |
+| U2           |    135 |
+| Led Zeppelin |    114 |
+| Metallica    |    112 |
+| Lost         |     92 |
++--------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT Artist.Name AS Artist, COUNT(Track.TrackId) AS Track FROM Artist
+    -> JOIN Album ON Artist.ArtistId = Album.ArtistId
+    -> JOIN Track ON Album.AlbumId = Track.AlbumId
+    -> GROUP BY Artist.Name
+    -> ORDER BY COUNT(Artist.Name)
+    -> DESC LIMIT 5;
++--------------+-------+
+| Artist       | Track |
++--------------+-------+
+| Iron Maiden  |   213 |
+| U2           |   135 |
+| Led Zeppelin |   114 |
+| Metallica    |   112 |
+| Lost         |    92 |
++--------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> notee

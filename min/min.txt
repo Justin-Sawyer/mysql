@@ -1,0 +1,149 @@
+mysql> select min(LastName) from Customer;
++---------------+
+| min(LastName) |
++---------------+
+| Almeida       |
++---------------+
+1 row in set (0.01 sec)
+
+mysql> select min(FirstName) from Customer;
++----------------+
+| min(FirstName) |
++----------------+
+| Aaron          |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select LastName from Customer;
++---------------+
+| LastName      |
++---------------+
+| Gonçalves     |
+| Köhler        |
+| Tremblay      |
+| Hansen        |
+| Wichterlová   |
+| Holý          |
+| Gruber        |
+| Peeters       |
+| Nielsen       |
+| Martins       |
+| Rocha         |
+| Almeida       |
+| Ramos         |
+| Philips       |
+| Peterson      |
+| Harris        |
+| Smith         |
+| Brooks        |
+| Goyer         |
+| Miller        |
+| Chase         |
+| Leacock       |
+| Gordon        |
+| Ralston       |
+| Stevens       |
+| Cunningham    |
+| Gray          |
+| Barnett       |
+| Brown         |
+| Francis       |
+| Silk          |
+| Mitchell      |
+| Sullivan      |
+| Fernandes     |
+| Sampaio       |
+| Schneider     |
+| Zimmermann    |
+| Schröder      |
+| Bernard       |
+| Lefebvre      |
+| Dubois        |
+| Girard        |
+| Mercier       |
+| Hämäläinen    |
+| Kovács        |
+| O'Reilly      |
+| Mancini       |
+| Van der Berg  |
+| Wójcik        |
+| Muñoz         |
+| Johansson     |
+| Jones         |
+| Hughes        |
+| Murray        |
+| Taylor        |
+| Gutiérrez     |
+| Rojas         |
+| Pareek        |
+| Srivastava    |
++---------------+
+59 rows in set (0.00 sec)
+
+mysql> select FirstName from Customer;
++------------+
+| FirstName  |
++------------+
+| Luís       |
+| Leonie     |
+| François   |
+| Bjørn      |
+| František  |
+| Helena     |
+| Astrid     |
+| Daan       |
+| Kara       |
+| Eduardo    |
+| Alexandre  |
+| Roberto    |
+| Fernanda   |
+| Mark       |
+| Jennifer   |
+| Frank      |
+| Jack       |
+| Michelle   |
+| Tim        |
+| Dan        |
+| Kathy      |
+| Heather    |
+| John       |
+| Frank      |
+| Victor     |
+| Richard    |
+| Patrick    |
+| Julia      |
+| Robert     |
+| Edward     |
+| Martha     |
+| Aaron      |
+| Ellie      |
+| João       |
+| Madalena   |
+| Hannah     |
+| Fynn       |
+| Niklas     |
+| Camille    |
+| Dominique  |
+| Marc       |
+| Wyatt      |
+| Isabelle   |
+| Terhi      |
+| Ladislav   |
+| Hugh       |
+| Lucas      |
+| Johannes   |
+| Stanisław  |
+| Enrique    |
+| Joakim     |
+| Emma       |
+| Phil       |
+| Steve      |
+| Mark       |
+| Diego      |
+| Luis       |
+| Manoj      |
+| Puja       |
++------------+
+59 rows in set (0.00 sec)
+
+mysql> notee

@@ -1,0 +1,19 @@
+mysql> select count(*) from Customer
+    -> where SupportRepId = 4;
++----------+
+| count(*) |
++----------+
+|       20 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) as Rep_4s_Customer_Total from Customer
+    -> where SupportRepId = 4;
++-----------------------+
+| Rep_4s_Customer_Total |
++-----------------------+
+|                    20 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> notee

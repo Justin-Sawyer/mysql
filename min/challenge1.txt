@@ -1,0 +1,21 @@
+mysql> select min(BirthDate) from Employee;
++---------------------+
+| min(BirthDate)      |
++---------------------+
+| 1947-09-19 00:00:00 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select min(BirthDate) as Date_of_Birth, Name from Employer;
+ERROR 1146 (42S02): Table 'Chinook.Employer' doesn't exist
+mysql> select min(BirthDate) as Date_of_Birth, concat(FirstName, " ", LastName) from Employee;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #2 of SELECT list contains nonaggregated column 'Chinook.Employee.FirstName'; this is incompatible with sql_mode=only_full_group_by
+mysql> select min(BirthDate) as Date_of_Birth from Employee;
++---------------------+
+| Date_of_Birth       |
++---------------------+
+| 1947-09-19 00:00:00 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> notee

@@ -1,0 +1,29 @@
+mysql> Insert into Track (Name, AlbumId, GenreId, Composer, Milliseconds, Bytes, UnitPrice)
+    -> values("Extra Track", 348, 1, "U2", 290000, 1234, 0.99);
+ERROR 1364 (HY000): Field 'MediaTypeId' doesn't have a default value
+
+
+mysql> Insert into Track (Name, AlbumId, MediaTypeId, GenreId, Composer, Milliseconds, Bytes, UnitPrice)
+    -> values("Extra Track", 348, 6, 1, "U2", 290000, 1234, 0.99);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from Track where AlbumId = 348;
++---------+-------------------------------------------+---------+-------------+---------+--------------------------------------------------+--------------+-------+-----------+
+| TrackId | Name                                      | AlbumId | MediaTypeId | GenreId | Composer                                         | Milliseconds | Bytes | UnitPrice |
++---------+-------------------------------------------+---------+-------------+---------+--------------------------------------------------+--------------+-------+-----------+
+|    3504 | I Will Follow                             |     348 |           6 |       1 | The Edge, Bono, Adam Clayton & Larry Mullen, Jr. |       217267 |  1234 |      0.99 |
+|    3505 | Twilight                                  |     348 |           6 |       1 | The Edge, Bono, Adam Clayton & Larry Mullen, Jr. |       262445 |  1234 |      0.99 |
+|    3506 | An Cat Dubh                               |     348 |           6 |       1 | The Edge, Bono, Adam Clayton & Larry Mullen, Jr. |       286447 |  1234 |      0.99 |
+|    3507 | Into the Heart                            |     348 |           6 |       1 | The Edge, Bono, Adam Clayton & Larry Mullen, Jr. |       207608 |  1234 |      0.99 |
+|    3508 | Out of Control                            |     348 |           6 |       1 | The Edge, Bono, Adam Clayton & Larry Mullen, Jr. |       254048 |  1234 |      0.99 |
+|    3509 | Stories For Boys                          |     348 |           6 |       1 | The Edge, Bono, Adam Clayton & Larry Mullen, Jr. |       182420 |  1234 |      0.99 |
+|    3510 | The Ocean                                 |     348 |           6 |       1 | The Edge, Bono, Adam Clayton & Larry Mullen, Jr. |        95097 |  1234 |      0.99 |
+|    3511 | A Day Without Me                          |     348 |           6 |       1 | The Edge, Bono, Adam Clayton & Larry Mullen, Jr. |       193174 |  1234 |      0.99 |
+|    3512 | Another Time Another Place                |     348 |           6 |       1 | The Edge, Bono, Adam Clayton & Larry Mullen, Jr. |       272940 |  1234 |      0.99 |
+|    3513 | The Electric Co.                          |     348 |           6 |       1 | The Edge, Bono, Adam Clayton & Larry Mullen, Jr. |       286688 |  1234 |      0.99 |
+|    3514 | Shadows and Tall Trees / Saturday Matinee |     348 |           6 |       1 | The Edge, Bono, Adam Clayton & Larry Mullen, Jr. |       314864 |  1234 |      0.99 |
+|    3515 | Extra Track                               |     348 |           6 |       1 | U2                                               |       290000 |  1234 |      0.99 |
++---------+-------------------------------------------+---------+-------------+---------+--------------------------------------------------+--------------+-------+-----------+
+12 rows in set (0.00 sec)
+
+mysql> notee

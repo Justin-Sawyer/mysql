@@ -1,0 +1,29 @@
+mysql> select sum(count(Quantity) * UnitPrice) from InvoiceLine
+    -> inner join Track on Track.TrackId = InvoiceLine.TrackId
+    -> where Track = 'The Woman King';
+ERROR 1052 (23000): Column 'UnitPrice' in field list is ambiguous
+mysql> select sum(count(Quantity) * InvoiceLine.UnitPrice) from InvoiceLine
+    -> inner join Track on Track.TrackId = InvoiceLine.TrackId
+    -> where Track = 'The Woman King';
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select sum(count(Quantity) * InvoiceLine.UnitPrice) from InvoiceLine
+    -> inner join Track on Track.TrackId = InvoiceLine.TrackId
+    -> group by TrackId
+    -> where Track = 'The Woman King';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where Track = 'The Woman King'' at line 4
+mysql> select sum(count(Quantity) * InvoiceLine.UnitPrice) from InvoiceLine
+    -> inner join Track on Track.TrackId = InvoiceLine.TrackId
+    -> group by TrackId
+    -> where Track.Name = 'The Woman King';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where Track.Name = 'The Woman King'' at line 4
+mysql> select sum(InvoiceLine.Quantity * InvoiceLine.UnitPrice) from InvoiceLine
+    -> inner join Track on Track.TrackId = InvoiceLine.TrackId
+    -> where Track.Name = 'The Woman King';
++---------------------------------------------------+
+| sum(InvoiceLine.Quantity * InvoiceLine.UnitPrice) |
++---------------------------------------------------+
+|                                              3.98 |
++---------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> notee
