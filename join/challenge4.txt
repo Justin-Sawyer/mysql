@@ -1,0 +1,379 @@
+mysql> select Playlist.Name as Playlist, Track.Name as Song, Album.Title as Album, Artist.Name as Artist from Playlist
+    -> inner join Track on Track.TrackId = Playlist.TrackId
+    -> inner join Album on Album.AlbumId = Track.AlbumId
+    -> inner join Artist on Artist.ArtistId = Album.ArtistId
+    -> where Playlist.Name = 'Grunge';
+ERROR 1054 (42S22): Unknown column 'Playlist.TrackId' in 'on clause'
+
+mysql> select Playlist.Name as Playlist, Track.Name as Song, Album.Title as Album, Artist.Name as Artist from Playlist
+    -> inner join Track on Track.TrackId = PlaylistTrack.TrackId
+    -> inner join Album on Album.AlbumId = Track.AlbumId
+    -> inner join Artist on Artist.ArtistId = Album.ArtistId
+    -> where Playlist.Name = 'Grunge';
+ERROR 1054 (42S22): Unknown column 'PlaylistTrack.TrackId' in 'on clause'
+
+mysql> select PlaylistTrack.Name as Playlist, Track.Name as Song, Album.Title as Album, Artist.Name as Artist from PlaylistTrack
+    -> inner join Track on Track.TrackId = PlaylistTrack.TrackId
+    -> inner join Album on Album.AlbumId = Track.AlbumId
+    -> inner join Artist on Artist.ArtistId = Album.ArtistId
+    -> where PlaylistTrack.Name = 'Grunge';
+ERROR 1054 (42S22): Unknown column 'PlaylistTrack.Name' in 'field list'
+mysql> select * from Playlist
+    -> ;
++------------+----------------------------+
+| PlaylistId | Name                       |
++------------+----------------------------+
+|          1 | Music                      |
+|          2 | Movies                     |
+|          3 | TV Shows                   |
+|          4 | Audiobooks                 |
+|          5 | 90’s Music                 |
+|          6 | Audiobooks                 |
+|          7 | Movies                     |
+|          8 | Music                      |
+|          9 | Music Videos               |
+|         10 | TV Shows                   |
+|         11 | Brazilian Music            |
+|         12 | Classical                  |
+|         13 | Classical 101 - Deep Cuts  |
+|         14 | Classical 101 - Next Steps |
+|         15 | Classical 101 - The Basics |
+|         16 | Grunge                     |
+|         17 | Heavy Metal Classic        |
+|         18 | On-The-Go 1                |
++------------+----------------------------+
+18 rows in set (0.00 sec)
+
+mysql> select * from Playlist
+    -> where PlayList.Name = 'Grunge';
+ERROR 1054 (42S22): Unknown column 'PlayList.Name' in 'where clause'
+mysql> select Playlist.Name from Playlist;
++----------------------------+
+| Name                       |
++----------------------------+
+| Music                      |
+| Movies                     |
+| TV Shows                   |
+| Audiobooks                 |
+| 90’s Music                 |
+| Audiobooks                 |
+| Movies                     |
+| Music                      |
+| Music Videos               |
+| TV Shows                   |
+| Brazilian Music            |
+| Classical                  |
+| Classical 101 - Deep Cuts  |
+| Classical 101 - Next Steps |
+| Classical 101 - The Basics |
+| Grunge                     |
+| Heavy Metal Classic        |
+| On-The-Go 1                |
++----------------------------+
+18 rows in set (0.00 sec)
+
+mysql> select Playlist.Name from Playlist
+    -> where Playlist.Name = 'Grunge';
++--------+
+| Name   |
++--------+
+| Grunge |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select Playlist.Name as Playlist, Track.Name as Song from Playlist
+    -> inner join PlaylistTrack on PlaylistTrack.TrackId = Track.TrackId
+    -> where Playlist.Name = 'Grunge';
+ERROR 1054 (42S22): Unknown column 'Track.Name' in 'field list'
+
+mysql> select Playlist.Name as Playlist, PlaylistTrack.Name as Song from Playlist
+    -> inner join PlaylistTrack on PlaylistTrack.TrackId = Track.TrackId
+    -> where Playlist.Name = 'Grunge';
+ERROR 1054 (42S22): Unknown column 'PlaylistTrack.Name' in 'field list'
+
+mysql> select Playlist.Name from Playlist
+    -> inner join PlaylistTrack on PlaylistTrack.PlaylistId = Playlist.PlaylistId
+    -> where Playlist.Name = 'Grunge';
++--------+
+| Name   |
++--------+
+| Grunge |
+| Grunge |
+| Grunge |
+| Grunge |
+| Grunge |
+| Grunge |
+| Grunge |
+| Grunge |
+| Grunge |
+| Grunge |
+| Grunge |
+| Grunge |
+| Grunge |
+| Grunge |
+| Grunge |
++--------+
+15 rows in set (0.00 sec)
+
+mysql> select Playlist.Name as Playlist, Track.Name as Song from Playlist
+    -> inner join PlaylistTrack on PlaylistTrack.PlaylistId = Playlist.PlaylistId
+    -> inner join Track on Track.TrackId = PlaylistTrack.TrackId
+    -> where Playlist.Name = 'Grunge';
++----------+-------------------------+
+| Playlist | Song                    |
++----------+-------------------------+
+| Grunge   | Man In The Box          |
+| Grunge   | Smells Like Teen Spirit |
+| Grunge   | In Bloom                |
+| Grunge   | Come As You Are         |
+| Grunge   | Lithium                 |
+| Grunge   | Drain You               |
+| Grunge   | On A Plain              |
+| Grunge   | Evenflow                |
+| Grunge   | Alive                   |
+| Grunge   | Jeremy                  |
+| Grunge   | Daughter                |
+| Grunge   | Outshined               |
+| Grunge   | Black Hole Sun          |
+| Grunge   | Plush                   |
+| Grunge   | Hunger Strike           |
++----------+-------------------------+
+15 rows in set (0.00 sec)
+
+mysql> select Playlist.Name as Playlist, Track.Name as Song, Album.Title from Playlist
+    -> inner join PlaylistTrack on PlaylistTrack.PlaylistId = Playlist.PlaylistId
+    -> inner join Track on Track.TrackId = PlaylistTrack.TrackId
+    -> inner join Album on Album.AlbumId = Track.TrackId
+    -> where Playlist.Name = 'Grunge';
++----------+----------------+----------------------------------+
+| Playlist | Song           | Title                            |
++----------+----------------+----------------------------------+
+| Grunge   | Man In The Box | Vinícius De Moraes - Sem Limite  |
++----------+----------------+----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select Playlist.Name as Playlist, Track.Name as Song, Album.Title from Playlist
+    -> inner join PlaylistTrack on PlaylistTrack.PlaylistId = Playlist.PlaylistId
+    -> inner join Track on Track.TrackId = PlaylistTrack.TrackId
+    -> inner join Album on Album.AlbumId = Track.AlbumId
+    -> where Playlist.Name = 'Grunge';
++----------+-------------------------+-------------------+
+| Playlist | Song                    | Title             |
++----------+-------------------------+-------------------+
+| Grunge   | Man In The Box          | Facelift          |
+| Grunge   | Smells Like Teen Spirit | Nevermind         |
+| Grunge   | In Bloom                | Nevermind         |
+| Grunge   | Come As You Are         | Nevermind         |
+| Grunge   | Lithium                 | Nevermind         |
+| Grunge   | Drain You               | Nevermind         |
+| Grunge   | On A Plain              | Nevermind         |
+| Grunge   | Evenflow                | Ten               |
+| Grunge   | Alive                   | Ten               |
+| Grunge   | Jeremy                  | Ten               |
+| Grunge   | Daughter                | Vs.               |
+| Grunge   | Outshined               | A-Sides           |
+| Grunge   | Black Hole Sun          | A-Sides           |
+| Grunge   | Plush                   | Core              |
+| Grunge   | Hunger Strike           | Temple of the Dog |
++----------+-------------------------+-------------------+
+15 rows in set (0.00 sec)
+
+mysql> select Playlist.Name as Playlist, Track.Name as Song, Album.Title as Album from Playlist
+    -> inner join PlaylistTrack on PlaylistTrack.PlaylistId = Playlist.PlaylistId
+    -> inner join Track on Track.TrackId = PlaylistTrack.TrackId
+    -> inner join Album on Album.AlbumId = Track.AlbumId
+    -> where Playlist.Name = 'Grunge';
++----------+-------------------------+-------------------+
+| Playlist | Song                    | Album             |
++----------+-------------------------+-------------------+
+| Grunge   | Man In The Box          | Facelift          |
+| Grunge   | Smells Like Teen Spirit | Nevermind         |
+| Grunge   | In Bloom                | Nevermind         |
+| Grunge   | Come As You Are         | Nevermind         |
+| Grunge   | Lithium                 | Nevermind         |
+| Grunge   | Drain You               | Nevermind         |
+| Grunge   | On A Plain              | Nevermind         |
+| Grunge   | Evenflow                | Ten               |
+| Grunge   | Alive                   | Ten               |
+| Grunge   | Jeremy                  | Ten               |
+| Grunge   | Daughter                | Vs.               |
+| Grunge   | Outshined               | A-Sides           |
+| Grunge   | Black Hole Sun          | A-Sides           |
+| Grunge   | Plush                   | Core              |
+| Grunge   | Hunger Strike           | Temple of the Dog |
++----------+-------------------------+-------------------+
+15 rows in set (0.00 sec)
+
+mysql> select Playlist.Name as Playlist, Track.Name as Song, Album.Title as Album, Artist.Name as Artist from Playlist
+    -> inner join PlaylistTrack on PlaylistTrack.PlaylistId = Playlist.PlaylistId
+    -> inner join Track on Track.TrackId = PlaylistTrack.TrackId
+    -> inner join Album on Album.AlbumId = Track.AlbumId
+    -> inner join Artist on Artist.ArtistId = Album.ArtistId
+    -> where Playlist.Name = 'Grunge';
++----------+-------------------------+-------------------+---------------------+
+| Playlist | Song                    | Album             | Artist              |
++----------+-------------------------+-------------------+---------------------+
+| Grunge   | Man In The Box          | Facelift          | Alice In Chains     |
+| Grunge   | Smells Like Teen Spirit | Nevermind         | Nirvana             |
+| Grunge   | In Bloom                | Nevermind         | Nirvana             |
+| Grunge   | Come As You Are         | Nevermind         | Nirvana             |
+| Grunge   | Lithium                 | Nevermind         | Nirvana             |
+| Grunge   | Drain You               | Nevermind         | Nirvana             |
+| Grunge   | On A Plain              | Nevermind         | Nirvana             |
+| Grunge   | Evenflow                | Ten               | Pearl Jam           |
+| Grunge   | Alive                   | Ten               | Pearl Jam           |
+| Grunge   | Jeremy                  | Ten               | Pearl Jam           |
+| Grunge   | Daughter                | Vs.               | Pearl Jam           |
+| Grunge   | Outshined               | A-Sides           | Soundgarden         |
+| Grunge   | Black Hole Sun          | A-Sides           | Soundgarden         |
+| Grunge   | Plush                   | Core              | Stone Temple Pilots |
+| Grunge   | Hunger Strike           | Temple of the Dog | Temple of the Dog   |
++----------+-------------------------+-------------------+---------------------+
+15 rows in set (0.00 sec)
+
+mysql> select Playlist.Name as Playlist, Track.Name as Song, Album.Title as Album, Artist.Name as Artist from Playlist
+    -> inner join PlaylistTrack on PlaylistTrack.PlaylistId = Playlist.PlaylistId
+    -> inner join Track on Track.TrackId = PlaylistTrack.TrackId
+    -> inner join Album on Album.AlbumId = Track.AlbumId
+    -> inner join Artist on Artist.ArtistId = Album.ArtistId
+    -> where Playlist.Name = 'Heavy Metal Classic' and 'Grunge';
+Empty set, 1 warning (0.01 sec)
+
+mysql> select Playlist.Name as Playlist, Track.Name as Song, Album.Title as Album, Artist.Name as Artist from Playlist
+    -> inner join PlaylistTrack on PlaylistTrack.PlaylistId = Playlist.PlaylistId
+    -> inner join Track on Track.TrackId = PlaylistTrack.TrackId
+    -> inner join Album on Album.AlbumId = Track.AlbumId
+    -> inner join Artist on Artist.ArtistId = Album.ArtistId
+    -> where Playlist.Name = 'Heavy Metal Classic' and Playlist.Name = 'Grunge';
+Empty set (0.00 sec)
+
+mysql> select Playlist.Name as Playlist, Track.Name as Song, Album.Title as Album, Artist.Name as Artist from Playlist
+    -> inner join PlaylistTrack on PlaylistTrack.PlaylistId = Playlist.PlaylistId
+    -> inner join Track on Track.TrackId = PlaylistTrack.TrackId
+    -> inner join Album on Album.AlbumId = Track.AlbumId
+    -> inner join Artist on Artist.ArtistId = Album.ArtistId
+    -> where Playlist.Name = 'Heavy Metal Classic';
++---------------------+-----------------------------------------+-------------------------------------------------------------------------+---------------+
+| Playlist            | Song                                    | Album                                                                   | Artist        |
++---------------------+-----------------------------------------+-------------------------------------------------------------------------+---------------+
+| Heavy Metal Classic | For Those About To Rock (We Salute You) | For Those About To Rock We Salute You                                   | AC/DC         |
+| Heavy Metal Classic | Balls to the Wall                       | Balls to the Wall                                                       | Accept        |
+| Heavy Metal Classic | Fast As a Shark                         | Restless and Wild                                                       | Accept        |
+| Heavy Metal Classic | Restless and Wild                       | Restless and Wild                                                       | Accept        |
+| Heavy Metal Classic | Princess of the Dawn                    | Restless and Wild                                                       | Accept        |
+| Heavy Metal Classic | N.I.B.                                  | Black Sabbath                                                           | Black Sabbath |
+| Heavy Metal Classic | Supernaut                               | Black Sabbath Vol. 4 (Remaster)                                         | Black Sabbath |
+| Heavy Metal Classic | Wrathchild                              | Killers                                                                 | Iron Maiden   |
+| Heavy Metal Classic | Killers                                 | Killers                                                                 | Iron Maiden   |
+| Heavy Metal Classic | Where Eagles Dare                       | Piece Of Mind                                                           | Iron Maiden   |
+| Heavy Metal Classic | 2 Minutes To Midnight                   | Powerslave                                                              | Iron Maiden   |
+| Heavy Metal Classic | Wasted Years                            | Somewhere in Time                                                       | Iron Maiden   |
+| Heavy Metal Classic | Run to the Hills                        | The Number of The Beast                                                 | Iron Maiden   |
+| Heavy Metal Classic | Enter Sandman                           | Black Album                                                             | Metallica     |
+| Heavy Metal Classic | The Four Horsemen                       | Kill 'Em All                                                            | Metallica     |
+| Heavy Metal Classic | Seek & Destroy                          | Kill 'Em All                                                            | Metallica     |
+| Heavy Metal Classic | Master Of Puppets                       | Master Of Puppets                                                       | Metallica     |
+| Heavy Metal Classic | For Whom The Bell Tolls                 | Ride The Lightning                                                      | Metallica     |
+| Heavy Metal Classic | Creeping Death                          | Ride The Lightning                                                      | Metallica     |
+| Heavy Metal Classic | Ace Of Spades                           | Ace Of Spades                                                           | Motörhead     |
+| Heavy Metal Classic | Live To Win                             | Ace Of Spades                                                           | Motörhead     |
+| Heavy Metal Classic | Looks That Kill                         | Motley Crue Greatest Hits                                               | Mötley Crüe   |
+| Heavy Metal Classic | I Don't Know                            | Blizzard of Ozz                                                         | Ozzy Osbourne |
+| Heavy Metal Classic | Crazy Train                             | Blizzard of Ozz                                                         | Ozzy Osbourne |
+| Heavy Metal Classic | Flying High Again                       | Diary of a Madman (Remastered)                                          | Ozzy Osbourne |
+| Heavy Metal Classic | The Zoo                                 | 20th Century Masters - The Millennium Collection: The Best of Scorpions | Scorpions     |
++---------------------+-----------------------------------------+-------------------------------------------------------------------------+---------------+
+26 rows in set (0.00 sec)
+
+mysql> select Playlist.Name as Playlist, Track.Name as Song, Album.Title as Album, Artist.Name as Artist from Playlist
+    -> inner join PlaylistTrack on PlaylistTrack.PlaylistId = Playlist.PlaylistId
+    -> inner join Track on Track.TrackId = PlaylistTrack.TrackId
+    -> inner join Album on Album.AlbumId = Track.AlbumId
+    -> inner join Artist on Artist.ArtistId = Album.ArtistId
+    -> where Playlist.Name = 'Heavy Metal Classic' or 'Grunge';
++---------------------+-----------------------------------------+-------------------------------------------------------------------------+---------------+
+| Playlist            | Song                                    | Album                                                                   | Artist        |
++---------------------+-----------------------------------------+-------------------------------------------------------------------------+---------------+
+| Heavy Metal Classic | For Those About To Rock (We Salute You) | For Those About To Rock We Salute You                                   | AC/DC         |
+| Heavy Metal Classic | Balls to the Wall                       | Balls to the Wall                                                       | Accept        |
+| Heavy Metal Classic | Fast As a Shark                         | Restless and Wild                                                       | Accept        |
+| Heavy Metal Classic | Restless and Wild                       | Restless and Wild                                                       | Accept        |
+| Heavy Metal Classic | Princess of the Dawn                    | Restless and Wild                                                       | Accept        |
+| Heavy Metal Classic | N.I.B.                                  | Black Sabbath                                                           | Black Sabbath |
+| Heavy Metal Classic | Supernaut                               | Black Sabbath Vol. 4 (Remaster)                                         | Black Sabbath |
+| Heavy Metal Classic | Wrathchild                              | Killers                                                                 | Iron Maiden   |
+| Heavy Metal Classic | Killers                                 | Killers                                                                 | Iron Maiden   |
+| Heavy Metal Classic | Where Eagles Dare                       | Piece Of Mind                                                           | Iron Maiden   |
+| Heavy Metal Classic | 2 Minutes To Midnight                   | Powerslave                                                              | Iron Maiden   |
+| Heavy Metal Classic | Wasted Years                            | Somewhere in Time                                                       | Iron Maiden   |
+| Heavy Metal Classic | Run to the Hills                        | The Number of The Beast                                                 | Iron Maiden   |
+| Heavy Metal Classic | Enter Sandman                           | Black Album                                                             | Metallica     |
+| Heavy Metal Classic | The Four Horsemen                       | Kill 'Em All                                                            | Metallica     |
+| Heavy Metal Classic | Seek & Destroy                          | Kill 'Em All                                                            | Metallica     |
+| Heavy Metal Classic | Master Of Puppets                       | Master Of Puppets                                                       | Metallica     |
+| Heavy Metal Classic | For Whom The Bell Tolls                 | Ride The Lightning                                                      | Metallica     |
+| Heavy Metal Classic | Creeping Death                          | Ride The Lightning                                                      | Metallica     |
+| Heavy Metal Classic | Ace Of Spades                           | Ace Of Spades                                                           | Motörhead     |
+| Heavy Metal Classic | Live To Win                             | Ace Of Spades                                                           | Motörhead     |
+| Heavy Metal Classic | Looks That Kill                         | Motley Crue Greatest Hits                                               | Mötley Crüe   |
+| Heavy Metal Classic | I Don't Know                            | Blizzard of Ozz                                                         | Ozzy Osbourne |
+| Heavy Metal Classic | Crazy Train                             | Blizzard of Ozz                                                         | Ozzy Osbourne |
+| Heavy Metal Classic | Flying High Again                       | Diary of a Madman (Remastered)                                          | Ozzy Osbourne |
+| Heavy Metal Classic | The Zoo                                 | 20th Century Masters - The Millennium Collection: The Best of Scorpions | Scorpions     |
++---------------------+-----------------------------------------+-------------------------------------------------------------------------+---------------+
+26 rows in set, 1 warning (0.00 sec)
+
+mysql> select Playlist.Name as Playlist, Track.Name as Song, Album.Title as Album, Artist.Name as Artist from Playlist
+    -> inner join PlaylistTrack on PlaylistTrack.PlaylistId = Playlist.PlaylistId
+    -> inner join Track on Track.TrackId = PlaylistTrack.TrackId
+    -> inner join Album on Album.AlbumId = Track.AlbumId
+    -> inner join Artist on Artist.ArtistId = Album.ArtistId
+    -> where Playlist.Name = 'Heavy Metal Classic' or Playlist.Name = 'Grunge';
++---------------------+-----------------------------------------+-------------------------------------------------------------------------+---------------------+
+| Playlist            | Song                                    | Album                                                                   | Artist              |
++---------------------+-----------------------------------------+-------------------------------------------------------------------------+---------------------+
+| Grunge              | Man In The Box                          | Facelift                                                                | Alice In Chains     |
+| Grunge              | Smells Like Teen Spirit                 | Nevermind                                                               | Nirvana             |
+| Grunge              | In Bloom                                | Nevermind                                                               | Nirvana             |
+| Grunge              | Come As You Are                         | Nevermind                                                               | Nirvana             |
+| Grunge              | Lithium                                 | Nevermind                                                               | Nirvana             |
+| Grunge              | Drain You                               | Nevermind                                                               | Nirvana             |
+| Grunge              | On A Plain                              | Nevermind                                                               | Nirvana             |
+| Grunge              | Evenflow                                | Ten                                                                     | Pearl Jam           |
+| Grunge              | Alive                                   | Ten                                                                     | Pearl Jam           |
+| Grunge              | Jeremy                                  | Ten                                                                     | Pearl Jam           |
+| Grunge              | Daughter                                | Vs.                                                                     | Pearl Jam           |
+| Grunge              | Outshined                               | A-Sides                                                                 | Soundgarden         |
+| Grunge              | Black Hole Sun                          | A-Sides                                                                 | Soundgarden         |
+| Grunge              | Plush                                   | Core                                                                    | Stone Temple Pilots |
+| Grunge              | Hunger Strike                           | Temple of the Dog                                                       | Temple of the Dog   |
+| Heavy Metal Classic | For Those About To Rock (We Salute You) | For Those About To Rock We Salute You                                   | AC/DC               |
+| Heavy Metal Classic | Balls to the Wall                       | Balls to the Wall                                                       | Accept              |
+| Heavy Metal Classic | Fast As a Shark                         | Restless and Wild                                                       | Accept              |
+| Heavy Metal Classic | Restless and Wild                       | Restless and Wild                                                       | Accept              |
+| Heavy Metal Classic | Princess of the Dawn                    | Restless and Wild                                                       | Accept              |
+| Heavy Metal Classic | N.I.B.                                  | Black Sabbath                                                           | Black Sabbath       |
+| Heavy Metal Classic | Supernaut                               | Black Sabbath Vol. 4 (Remaster)                                         | Black Sabbath       |
+| Heavy Metal Classic | Wrathchild                              | Killers                                                                 | Iron Maiden         |
+| Heavy Metal Classic | Killers                                 | Killers                                                                 | Iron Maiden         |
+| Heavy Metal Classic | Where Eagles Dare                       | Piece Of Mind                                                           | Iron Maiden         |
+| Heavy Metal Classic | 2 Minutes To Midnight                   | Powerslave                                                              | Iron Maiden         |
+| Heavy Metal Classic | Wasted Years                            | Somewhere in Time                                                       | Iron Maiden         |
+| Heavy Metal Classic | Run to the Hills                        | The Number of The Beast                                                 | Iron Maiden         |
+| Heavy Metal Classic | Enter Sandman                           | Black Album                                                             | Metallica           |
+| Heavy Metal Classic | The Four Horsemen                       | Kill 'Em All                                                            | Metallica           |
+| Heavy Metal Classic | Seek & Destroy                          | Kill 'Em All                                                            | Metallica           |
+| Heavy Metal Classic | Master Of Puppets                       | Master Of Puppets                                                       | Metallica           |
+| Heavy Metal Classic | For Whom The Bell Tolls                 | Ride The Lightning                                                      | Metallica           |
+| Heavy Metal Classic | Creeping Death                          | Ride The Lightning                                                      | Metallica           |
+| Heavy Metal Classic | Ace Of Spades                           | Ace Of Spades                                                           | Motörhead           |
+| Heavy Metal Classic | Live To Win                             | Ace Of Spades                                                           | Motörhead           |
+| Heavy Metal Classic | Looks That Kill                         | Motley Crue Greatest Hits                                               | Mötley Crüe         |
+| Heavy Metal Classic | I Don't Know                            | Blizzard of Ozz                                                         | Ozzy Osbourne       |
+| Heavy Metal Classic | Crazy Train                             | Blizzard of Ozz                                                         | Ozzy Osbourne       |
+| Heavy Metal Classic | Flying High Again                       | Diary of a Madman (Remastered)                                          | Ozzy Osbourne       |
+| Heavy Metal Classic | The Zoo                                 | 20th Century Masters - The Millennium Collection: The Best of Scorpions | Scorpions           |
++---------------------+-----------------------------------------+-------------------------------------------------------------------------+---------------------+
+41 rows in set (0.00 sec)
+
+mysql> notee

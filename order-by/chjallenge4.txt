@@ -1,0 +1,71 @@
+mysql> select concat(FirstName, LastName), Total from Invoice
+    -> order by Total desc
+    -> limit 10;
+ERROR 1054 (42S22): Unknown column 'FirstName' in 'field list'
+mysql> select concat(Customer.FirstName, Customer.LastName), Invoice.Total from Customer
+    -> inner join Invoice on Invoice.CustomerId = Customer.CustomerId
+    -> order by Total desc
+    -> limit 10;
++-----------------------------------------------+-------+
+| concat(Customer.FirstName, Customer.LastName) | Total |
++-----------------------------------------------+-------+
+| HelenaHolý                                    | 25.86 |
+| RichardCunningham                             | 23.86 |
+| LadislavKovács                                | 21.86 |
+| HughO'Reilly                                  | 21.86 |
+| AstridGruber                                  | 18.86 |
+| VictorStevens                                 | 18.86 |
+| LuisRojas                                     | 17.91 |
+| FrantišekWichterlová                          | 16.86 |
+| IsabelleMercier                               | 16.86 |
+| FrankRalston                                  | 15.86 |
++-----------------------------------------------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select concat(Customer.FirstName, Customer.LastName) as Customer, Invoice.Total as Total Spent from Customer
+    -> inner join Invoice on Invoice.CustomerId = Customer.CustomerId
+    -> order by Total desc
+    -> limit 10;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Spent from Customer
+inner join Invoice on Invoice.CustomerId = Customer.Customer' at line 1
+mysql> select concat(Customer.FirstName, Customer.LastName) as Customer, Invoice.Total as Total_Spent from Customer
+    -> inner join Invoice on Invoice.CustomerId = Customer.CustomerId
+    -> order by Total desc
+    -> limit 10;
++------------------------+-------------+
+| Customer               | Total_Spent |
++------------------------+-------------+
+| HelenaHolý             |       25.86 |
+| RichardCunningham      |       23.86 |
+| LadislavKovács         |       21.86 |
+| HughO'Reilly           |       21.86 |
+| AstridGruber           |       18.86 |
+| VictorStevens          |       18.86 |
+| LuisRojas              |       17.91 |
+| FrantišekWichterlová   |       16.86 |
+| IsabelleMercier        |       16.86 |
+| FrankRalston           |       15.86 |
++------------------------+-------------+
+10 rows in set (0.00 sec)
+
+mysql> select concat(Customer.FirstName, " ", Customer.LastName) as Customer, Invoice.Total as Total_Spent from Customer
+    -> inner join Invoice on Invoice.CustomerId = Customer.CustomerId
+    -> order by Total desc
+    -> limit 10;
++-------------------------+-------------+
+| Customer                | Total_Spent |
++-------------------------+-------------+
+| Helena Holý             |       25.86 |
+| Richard Cunningham      |       23.86 |
+| Ladislav Kovács         |       21.86 |
+| Hugh O'Reilly           |       21.86 |
+| Astrid Gruber           |       18.86 |
+| Victor Stevens          |       18.86 |
+| Luis Rojas              |       17.91 |
+| František Wichterlová   |       16.86 |
+| Isabelle Mercier        |       16.86 |
+| Frank Ralston           |       15.86 |
++-------------------------+-------------+
+10 rows in set (0.00 sec)
+
+mysql> quit

@@ -1,0 +1,12 @@
+mysql> select Playlist.Name as Playlist, COUNT(*) from Playlist
+    -> inner join PlaylistTrack on Playlist.PlaylistId = PlaylistTrack.PlaylistId
+    -> group by Playlist having count(*) = 1;
++--------------+----------+
+| Playlist     | COUNT(*) |
++--------------+----------+
+| On-The-Go 1  |        1 |
+| Music Videos |        1 |
++--------------+----------+
+2 rows in set (0.02 sec)
+
+mysql> notee
